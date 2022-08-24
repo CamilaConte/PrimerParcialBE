@@ -1,0 +1,25 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+
+#actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+
+#personalizacion de la respuesta de info (no necesario)
+info:
+  app:
+    name: eureka-server
+    description: Info del servidor de Eureka
+    version: 1.0.0
