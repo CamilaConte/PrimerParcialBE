@@ -17,7 +17,7 @@ management:
     env:
       enabled: true
 
-#personalizacion de la respuesta de info (no necesario)
+#personalizacion de la respuesta de info
 info:
   app:
     name: eureka-server

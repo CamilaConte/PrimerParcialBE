@@ -31,6 +31,12 @@ management:
     env:
       enabled: true
 
+info:
+  app:
+    name: catalog-service
+    description: Info del servicio Catalog
+    version: 1.0.0
+
 #config eureka client
 eureka:
   client:
