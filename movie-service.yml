@@ -32,7 +32,7 @@ spring:
 message: hello from movie-service
 
 queue:
-  serie:
+  movie:
     name: MovieQueue
 
 management:
