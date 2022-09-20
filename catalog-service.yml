@@ -31,8 +31,10 @@ spring:
 message: hello from catalog-service
 
 queue:
-  catalog:
-    name: CatalogQueue
+  movie:
+    name: MovieQueue
+  serie:
+    name: SerieQueue
 
 management:
   endpoints:
