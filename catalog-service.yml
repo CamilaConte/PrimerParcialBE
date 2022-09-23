@@ -23,7 +23,7 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      uri: mongodb://localhost/genre/genre
+      uri: mongodb://localhost/genre
   rabbitmq:
     username: guest
     password: guest
