@@ -65,3 +65,24 @@ eureka:
   instance:
     hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance-id:${random.value}}
+
+#config circuit breaker y reintentos
+resilience4j:
+  circuitbreaker:
+    instances: 
+      catalog: 
+        allow-health-indicator-to-fail: false #no le permitimos al circuit breaker que nos modifique el estado de nuestra app 
+        register-health-indicator: true #permitirle al circuit breaker el endpoint de health de actuator
+        sliding-window-type: COUNT_BASED #queremos realizar el analisis en base a una serie de eventos
+        sliding-window-size: 5 #definimos la cantidad de eventos que queremos que sucedan antes de realizar el analisis
+        failure-rate-threshold: 50 #permitimos un 50% de fallas (50% de 5) antes de pasar a estado abierto
+        wait-duration-in-open-state: 15000 #tiempo de espera para pasar a estado medio abierto
+        permitted-number-of-calls-in-half-open-state: 3 #cantidad de llamadas que permitimos en estado semi abierto para pasar a cerrado o abierto segun lo que devuelva el analisis
+        automatic-transition-from-open-to-half-open-enabled: true #luego de que pasan los 15seg en estado abierto., habilitamos que se pase automaticamente a estado semi abierto
+  retry:
+    instances:
+      catalog:
+        max-atempts: 3 #definimos cuantos intentos queremos que se realicen como maximo
+        wait-duration: 1000 #cuanto tiempo esperamos entre intento y reintento
+        retry-exceptions:
+          - feign.FeignException$InternalServerError #el error que dispara los reintentos
